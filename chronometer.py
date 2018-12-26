@@ -1,14 +1,11 @@
 #!usr/bin/env python
 # -*- coding:utf-8 -*-
-"chronometer w/ laps (for laps just enter stop() other times)"
+"chronometer w/ laps"
 
 import os
 
 def start():
-	"""
-	start chronometer
-	(return the system's time (needed to stop the chrono))
-	"""
+	"return the system's time (needed to stop the chrono)"
 	begin = [
 		int(time.strftime("%H")), # fetch system's hour
 		int(time.strftime("%M")), # .............. minutes
@@ -17,7 +14,7 @@ def start():
 	return begin
 	
 def stop(begin):
-	"stop Chronometer"
+	"return a lap"
 	
 	end = [
 		int(time.strftime("%H")), # fetch system's hour
