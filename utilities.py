@@ -8,7 +8,8 @@ def randomlistpicker(usrlist):
 	"Pick a random entry in given list"
 	
 	if type(usrlist) != list:
-		print("argument provided is not a list")
+		raise TypeError("argument provided is not a list")
+		
 	return(usrlist[random.randint(0,len(usrlist)-1)])
 	
 def menu_generator(title, init, entree, sortie):
