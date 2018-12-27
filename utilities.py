@@ -14,7 +14,7 @@ def randomlistpicker(usrlist):
 	
 def menu_generator(title, init, entree, sortie):
 	"generate a menu w/ input & output"
-	
+
 	os.system("clear")
 	indice = 0
 	for x in init:
@@ -29,7 +29,7 @@ def menu_generator(title, init, entree, sortie):
 	for n in range(0, len(entree)):
 		if choix == n + 1:
 			exec(sortie[n])
-	print("BAD INPUT")
+	raise InputError("this option isn't in the menu")
 	os.system("pause")
 	os.system("cls")
 	menu_generator(title, init, entree, sortie)
