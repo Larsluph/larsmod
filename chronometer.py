@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 "chronometer w/ laps"
 
-import os
+import os,time
 
 def start():
 	"return the system's time (needed to stop the chrono)"
