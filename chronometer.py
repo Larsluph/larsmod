@@ -21,7 +21,7 @@ def stop(begin):
 		int(time.strftime("%M")), # .............. minutes
 		int(time.strftime("%S"))  # .............. seconds
 	]
-	chrono = [ # calculating the time difference between begin and end
+	chrono = [ # calculating the time difference between end and begin
 		end[0] - begin[0],
 		end[1] - begin[1],
 		end[2] - begin[2]
@@ -33,4 +33,3 @@ def stop(begin):
 		chrono[1] -= 60
 		chrono[0] += 1
 	return end, chrono
-	
