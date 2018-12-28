@@ -12,24 +12,41 @@ def randomlistpicker(usrlist):
 		
 	return(usrlist[random.randint(0,len(usrlist)-1)])
 	
-def menu_generator(title, init, entree, sortie):
-	"generate a menu w/ input & output"
+def menu_generator(title, init, inputs, output):
+	"generate a menu w/ inputs & outputs"
 
-	os.system("clear")
+	os.system("cls")
+	
+	if type(title) != str or type(init) != list or ( type(inputs) and type(output) ) != list:
+		raise TypeError("arguments provided are incorrects")
+	
 	indice = 0
+	
 	for x in init:
-		exec(init[indice])
+		exec(str(init[indice]))
 		indice += 1
+		
 	print(title)
+	
 	indice = 0
-	for x in entree:
+	for x in inputs:
 		indice += 1
 		print(str(indice) + ".", x)
-	choix = int(input("Entrez votre choix :\n"))
-	for n in range(0, len(entree)):
-		if choix == n + 1:
-			exec(sortie[n])
-	raise InputError("this option isn't in the menu")
-	os.system("pause")
-	os.system("cls")
-	menu_generator(title, init, entree, sortie)
+		
+	try:
+		choice = int(input("Enter your choice :\n"))
+	except ValueError:
+		print("your choice must be an integer")
+		os.system("pause")
+		os.system("cls")
+		menu_generator(title, init, inputs, output)
+	
+	for n in range(0, len(inputs)):
+		if choice == n + 1:
+			exec(output[n])
+			
+	if choice < 1 or choice > len(inputs):
+		print("this option isn't in the menu")
+		os.system("pause")
+		os.system("cls")
+		menu_generator(title, init, inputs, output)
