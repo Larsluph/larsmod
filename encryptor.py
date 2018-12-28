@@ -12,7 +12,6 @@ class cypher:
 		
 		if not(type(data) == str): # error if data not a string
 			raise TypeError("given argument is not a string")
-		
 		alphabet = {
 			"a" : 1,
 			"b" : 2,
@@ -105,7 +104,7 @@ class decypher:
 		}
 		result = str()
 		for digit in data:
-			result += alphabet[digit]
+			result += alphabet[str(digit)]
 		return result
 	
 	def cesar(data, indice):
@@ -113,22 +112,15 @@ class decypher:
 		
 			if not(type(data) == str and type(indice) == int):
 				raise TypeError("given arguments are incorrect")
-		
 		alphabet = "abcdefghijklmnopqrstuvwxyz"
 		result = ""
 		for letter in data:
 			index = 0
 			for x in alphabet:
-				
 				if x == letter:
 					code = index - indice
-					
 					while code < 0:
 						code += 26
-						
-					while code > 26:
-						code -= 26
-						
 					result += alphabet[code]
 				index += 1
 		return result
