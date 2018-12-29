@@ -51,10 +51,8 @@ def char_nbr_delete(path, char_nbr):
 	files = os.listdir(path) # create a list with all the filenames in folder 'path'
 	
 	for current in files:
-		for index in range(len(current)):
-			if index == char_nbr:
-				try:
-					os.rename(path + "\\" + current, path + "\\" + current[index+1:])
-				except FileExistsError:
-					raise ("Unable to rename file '{}' because the file already exists. skipping...".format(current) )
-				break
+		try:
+			os.rename(path + "\\" + current, path + "\\" + current[char_nbr:])
+		except FileExistsError:
+			raise ("Unable to rename file '{}' because the file already exists. skipping...".format(current) )
+		break
