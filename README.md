@@ -12,7 +12,9 @@ For now, there are 2 algorithms :
 	- alpha
 	- cesar
 
-The alpha algorithm enable to convert a string into a digit list and vice versa.
+The alpha algorithm convert a string into a digit list and vice versa.
+
+The cesar algorithm take a string and shift all the characters to a certain position.
 
 <h2>File Manager</h2>
 
