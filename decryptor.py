@@ -111,8 +111,8 @@ class decypher:
 	def cesar(data, indice):
 		"decypher cesar encryption"
 		
-			if not(type(data) == str and type(indice) == int):
-				raise TypeError("given arguments are incorrect")
+		if not(type(data) == str and type(indice) == int):
+			raise TypeError("given arguments are incorrect")
 		
 		alphabet = "abcdefghijklmnopqrstuvwxyz"
 		result = ""
