@@ -34,6 +34,9 @@ def suffix_delete(path, suffix):
 def char_delete(path, char):
 	"delete filename up to a certain character"
 	
+	if len(char) != 1:
+		raise InputError("'char' must be a single character")
+	
 	files = os.listdir(path) # create a list with all the filenames in folder 'path'
 	
 	for current in files:

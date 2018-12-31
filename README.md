@@ -12,11 +12,23 @@ For now, there are 2 algorithms :
 	- alpha
 	- cesar
 
-The alpha algorithm convert a string into a digit list and vice versa.
+The alpha algorithm converts a string into a digit list and vice versa.
 
-The cesar algorithm take a string and shift all the characters to a certain position.
+The Caesar algorithm takes a string and shifts all characters to a certain position.
 
 <h2>File Manager</h2>
-
+The File Manager is used to manage files (thanks Dr. Obvious). For now, the File Manager can only manage filenames.
+You can remove the prefix or the suffix of multiple files in a given folder (sub-folders excluded) with the functions prefix_delete(path, prefix) and suffix_delete(path, suffix).
+You can also remove the beginning of filenames with char_delete(path, char) that remove filenames up to the first occurrence of "char" (included) and char_nbr_delete(path, char_nbr) that remove filenames up to a certain "char_nbr".
 
 <h2>Utilities</h2>
+The utilities module is composed of some miscellaneous useful functions.
+randomlistpicker(usrlist) return a random entry in the 'usrlist'.
+menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.
+
+<h2>Errors</h2>
+<ul>
+<li>TypeError - a function may return this error because an arguments' type isn't correct</li>
+<li>FileExistsError - a function in the file_manager may return this error because the modified file had the same name as an existing file</li>
+<li>InputError - char_delete may return this error because 'char' must be a single character</li>
+</ul>
