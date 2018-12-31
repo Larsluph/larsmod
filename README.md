@@ -3,30 +3,26 @@ Hi there! Here is where you can find examples and explanations to use this modul
 
 <h2>Chronometer</h2>
 This chronometer is pretty simple.<br/>
-When you start it, it will return the actual system time. You just need to store this formatted time in a variable.
-And when you stop it, it will return the actual time and the elapsed time between the start and now.
+When you start it, it will return the actual system time. You just need to store this formatted time in a variable.<br/>
+And when you stop it, it will return the actual time and the elapsed time between the start and now.<br/>
 
 <h2>Decryptor</h2>
-<p>The decryptor (as said by his own name) can encrypt/decrypt simple cypher algorithms.</p>
+The decryptor (as said by his own name) can encrypt/decrypt simple cypher algorithms.<br/>
 For now, there are 2 algorithms :
 	<ul>
-		<li>alpha</li>
-		<li>cesar</li>
+		<li>alpha - It converts a string into a digit list and vice versa.</li>
+		<li>cesar - The Cesar algorithm takes a string and shifts all characters to a certain position.</li>
 	</ul>
 
-<p>The alpha algorithm converts a string into a digit list and vice versa.</p>
-
-<p>The Caesar algorithm takes a string and shifts all characters to a certain position.</p>
-
 <h2>File Manager</h2>
-The File Manager is used to manage files (thanks Dr. Obvious). For now, the File Manager can only manage filenames.
-You can remove the prefix or the suffix of multiple files in a given folder (sub-folders excluded) with the functions prefix_delete(path, prefix) and suffix_delete(path, suffix).
+The File Manager is used to manage files (thanks Dr. Obvious). For now, the File Manager can only manage filenames.<br/>
+You can remove the prefix or the suffix of multiple files in a given folder (sub-folders excluded) with the functions prefix_delete(path, prefix) and suffix_delete(path, suffix).<br/>
 You can also remove the beginning of filenames with char_delete(path, char) that remove filenames up to the first occurrence of "char" (included) and char_nbr_delete(path, char_nbr) that remove filenames up to a certain "char_nbr".
 
 <h2>Utilities</h2>
-The utilities module is composed of some miscellaneous useful functions.
-randomlistpicker(usrlist) return a random entry in the 'usrlist'.
-menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.
+The utilities module is composed of some miscellaneous useful functions.<br/>
+randomlistpicker(usrlist) return a random entry in the 'usrlist'.<br/>
+menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.<br/>
 
 <h2>Errors</h2>
 	<ul>
