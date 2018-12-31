@@ -8,8 +8,7 @@ And when you stop it, it will return the actual time and the elapsed time betwee
 
 <h2>Decryptor</h2>
 The decryptor (as said by his own name) can encrypt/decrypt simple cypher algorithms.<br/>
-<br/>
-For now, there are 2 algorithms :
+For now, there are 2 algorithms :<br/>
 	<ul>
 		<li>alpha - It converts a string into a digit list and vice versa.</li>
 		<li>cesar - The Cesar algorithm takes a string and shifts all characters to a certain position.</li>
@@ -21,8 +20,8 @@ For now, there are 2 algorithms :
 <p>You can also remove the beginning of filenames with char_delete(path, char) that remove filenames up to the first occurrence of "char" (included) and char_nbr_delete(path, char_nbr) that remove filenames up to a certain "char_nbr".</p>
 
 <h2>Utilities</h2>
-The utilities module is composed of some miscellaneous useful functions.<br/>
-randomlistpicker(usrlist) return a random entry in the 'usrlist'.<br/>
+<p>The utilities module is composed of some miscellaneous useful functions.</p>
+<p>randomlistpicker(usrlist) return a random entry in the 'usrlist'.</p>
 menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.<br/>
 
 <h2>Errors</h2>
