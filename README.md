@@ -16,13 +16,17 @@ The decryptor (as said by his own name) can encrypt/decrypt simple cypher algori
 
 <h2>File Manager</h2>
 <p>The File Manager is used to manage files (thanks Dr. Obvious). For now, the File Manager can only manage filenames.</p>
-<p>You can remove the prefix or the suffix of multiple files in a given folder (sub-folders excluded) with the functions prefix_delete(path, prefix) and suffix_delete(path, suffix).</p>
-<p>You can also remove the beginning of filenames with char_delete(path, char) that remove filenames up to the first occurrence of "char" (included) and char_nbr_delete(path, char_nbr) that remove filenames up to a certain "char_nbr".</p>
+<ul>
+	<li>You can remove the prefix or the suffix of multiple files in a given folder (sub-folders excluded) with the functions prefix_delete(path, prefix) and suffix_delete(path, suffix).</li>
+	<li>You can also remove the beginning of filenames with char_delete(path, char) that remove filenames up to the first occurrence of "char" (included) and char_nbr_delete(path, char_nbr) that remove filenames up to a certain "char_nbr".</li>
+</ul>
 
 <h2>Utilities</h2>
 <p>The utilities module is composed of some miscellaneous useful functions.</p>
-<p>randomlistpicker(usrlist) return a random entry in the 'usrlist'.</p>
-menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.<br/>
+<ul>
+	<li>randomlistpicker(usrlist) return a random entry in the 'usrlist'.</li>
+	<li>menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.</li>
+<ul>
 
 <h2>Errors</h2>
 	<ul>
