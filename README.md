@@ -26,7 +26,7 @@ The decryptor (as said by his own name) can encrypt/decrypt simple cypher algori
 <ul>
 	<li>randomlistpicker(usrlist) return a random entry in the 'usrlist'.</li>
 	<li>menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.</li>
-<ul>
+</ul>
 
 <h2>Errors</h2>
 	<ul>
