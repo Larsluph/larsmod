@@ -22,5 +22,5 @@ custom_module.decryptor.decypher.cesar("defghi", 3)
 custom_module.decryptor.cypher.morse("sos")
 # >>> ['...', '---', '...']
 
-custom_module.decryptor.cypher.morse( ['...', '---', '...'] )
+custom_module.decryptor.cypher.morse('... --- ...'.split(" ")] )
 # >>> 'sos'
