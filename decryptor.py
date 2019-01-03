@@ -45,7 +45,7 @@ class cypher:
 		result = list()
 		for letter in data:
 			result.append(alphabet[letter])
-		return result
+		return(result)
 		
 	def cesar(data, indice):
 		"cypher cesar encryption (str to str)"
@@ -64,7 +64,19 @@ class cypher:
 						code += 26
 					result += alphabet[code]
 				index += 1
-		return result
+		return(result)
+		
+	def morse(data):
+		"cypher alphabet string to morse list"
+		if not(type(data) == str):
+			raise TypeError("given argument is not a string")
+			
+		alphabet = dict( zip( list("abcdefghijklmnopqrstuvwxyz1234567890 ") , [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----","  /  "] ))
+		result = list()
+		for char in data.lower():
+			result.append(alphabet[char])
+		
+		return(result)
 	
 class decypher:
 	"a class to decypher data"
@@ -106,7 +118,7 @@ class decypher:
 		result = str()
 		for digit in data:
 			result += alphabet[digit]
-		return result
+		return(result)
 	
 	def cesar(data, indice):
 		"decypher cesar encryption"
@@ -131,5 +143,17 @@ class decypher:
 						
 					result += alphabet[code]
 				index += 1
-		return result
+		return(result)
+	def morse(data):
+		"decypher morse list to alphabet string"
+		if not(type(data) == list):
+			raise TypeError("given argument is not a list")
+			
+		alphabet = dict( zip( [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----","  /  "] , list("abcdefghijklmnopqrstuvwxyz1234567890 ") ))
+		
+		result = str()
+		for char in data:
+			result += alphabet[char]
+		
+		return(result)
 	
