@@ -7,11 +7,12 @@ When you start it, it will return the actual system time. You just need to store
 And when you stop it, it will return the actual time and the elapsed time between the start and now.<br/>
 
 <h2>Decryptor</h2>
-The decryptor (as said by his own name) can encrypt/decrypt simple cypher algorithms.<br/>
+The decryptor (as said by his own name) can encrypt and decrypt simple cypher algorithms.<br/>
 <p>For now, there are 2 algorithms :</p>
 	<ul>
-		<li><p>alpha - It converts a string into a digit list and vice versa.</p></li>
-		<li><p>cesar - The Cesar algorithm takes a string and shifts all characters to a certain position.</p></li>
+		<li>alpha - It converts a string into a digit list and vice versa.</li>
+		<li>cesar - The cesar algorithm takes a string and shifts all characters to a certain position.</li>
+		<li>morse - It enables to translate morse code into letters and vice versa.</li>
 	</ul>
 
 <h2>File Manager</h2>
