@@ -4,11 +4,14 @@
 
 from custom_module import utilities as util
 
-randomlistpicker(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'o', 'p', 'q', 'r', 's', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+util.randomlistpicker(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'o', 'p', 'q', 'r', 's', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
 # >>> 'z'
 # >>> 'm'
 # >>> 'q'
 # >>> 'g'
 # >>> 'w'
+
+util.letter_randomizer("this is a sentence")
+# >>> ['isht', 'is', 'a', 'eecensnt']
 
 util.menu_generator("MAIN MENU", [], ["input","print","Quit"], ["input()","print('success!')","quit()"])
