@@ -3,8 +3,9 @@
 "a module w/ useful tools"
 
 from custom_module import utilities as util
+import string
 
-util.randomlistpicker(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'o', 'p', 'q', 'r', 's', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+util.randomlistpicker(list(string.ascii_lowercase))
 # >>> 'z'
 # >>> 'm'
 # >>> 'q'
@@ -13,5 +14,8 @@ util.randomlistpicker(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l
 
 util.letter_randomizer("this is a sentence")
 # >>> ['isht', 'is', 'a', 'eecensnt']
+
+custom_module.calculator.launch()
+# >>> Enter calculation...
 
 util.menu_generator("MAIN MENU", [], ["input","print","Quit"], ["input()","print('success!')","quit()"])

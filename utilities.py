@@ -79,5 +79,3 @@ def menu_generator(title, init, inputs, output):
 		os.system("pause")
 		os.system("cls")
 		menu_generator(title, init, inputs, output)
-
-print(letter_randomizer("le seigneur des anneaux"))
