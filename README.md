@@ -29,6 +29,7 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 <ul>
 	<li>randomlistpicker(usrlist) return a random entry in the 'usrlist'.</li>
 	<li>letter_randomizer(words) take all characters in a string (single word / sentence) or in a list of words and randomize them to return an "anagram"</li>
+	<li>calculator.launch() enables to launch a python calculator console</li>
 	<li>menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.</li>
 </ul>
 
