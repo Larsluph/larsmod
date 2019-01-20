@@ -18,7 +18,7 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 </ul>
 
 <h1>File Manager</h1>
-<p>The File Manager is used to manage files (thanks Dr. Obvious). For now, the File Manager can only manage filenames.</p>
+<p>The File Manager is used to manage files (thanks Captain Obvious). For now, the File Manager can only manage filenames.</p>
 <ul>
 	<li>You can remove the prefix or the suffix of multiple files in a given folder (sub-folders excluded) with the functions prefix_delete(path, prefix) and suffix_delete(path, suffix).</li>
 	<li>You can also remove the beginning of filenames with char_delete(path, char) that remove filenames up to the first occurrence of "char" (included) and char_nbr_delete(path, char_nbr) that remove filenames up to a certain "char_nbr".</li>
