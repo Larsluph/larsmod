@@ -78,6 +78,37 @@ class cypher:
 		
 		return(result)
 	
+	def numpad(data):
+		data = data.lower()
+		indice = 0
+		final = str()
+		while indice != len(data):
+			if data[indice] == "a" or data[indice] == "b" or data[indice] == "c":
+				final += "2"
+			elif data[indice] == "d" or data[indice] == "e" or data[indice] == "f":
+				final += "3"
+			elif data[indice] == "g" or data[indice] == "h" or data[indice] == "i":
+				final += "4"
+			elif data[indice] == "j" or data[indice] == "k" or data[indice] == "l":
+				final += "5"
+			elif data[indice] == "m" or data[indice] == "n" or data[indice] == "o":
+				final += "6"
+			elif data[indice] == "p" or data[indice] == "q" or data[indice] == "r" or data[indice] == "s":
+				final += "7"
+			elif data[indice] == "t" or data[indice] == "u" or data[indice] == "v":
+				final += "8"
+			elif data[indice] == "w" or data[indice] == "x" or data[indice] == "y" or data[indice] == "z":
+				final += "9"
+			elif data [indice] == " ":
+				final += "0"
+			else:
+				try:
+					final += int(data[indice])
+				except:
+					final += "1"
+			indice += 1
+		return final
+	
 class decypher:
 	"a class to decypher data"
 	

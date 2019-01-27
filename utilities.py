@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 "a module w/ useful tools"
 
-import random, os
+import random, os, time
 
 def randomlistpicker(usrlist):
 	"Pick a random entry in given list"
@@ -40,6 +40,20 @@ def letter_randomizer(words):
 		result.append(string)
 	
 	return result
+	
+def now():
+	time.strftime('%A %d %B %Y')
+	time.strftime("%H:%M:%S")
+	final = [
+		time.strftime('%A'),
+		time.strftime('%d'),
+		time.strftime('%B'),
+		time.strftime('%Y'),
+		time.strftime("%H"),
+		time.strftime("%M"),
+		time.strftime("%S")
+	]
+	return final
 	
 def menu_generator(title, init, inputs, output):
 	"generate a menu w/ inputs & outputs"

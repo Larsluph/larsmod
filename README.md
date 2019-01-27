@@ -15,6 +15,7 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 	<li>alpha - It converts a string into a digit list and vice versa.</li>
 	<li>cesar - The cesar algorithm takes a string and shifts all characters to a certain position.</li>
 	<li>morse - It enables to translate morse code into letters and vice versa.</li>
+	<li>Numpad - ONLY ABLE TO CYPHER - convert a text string to a digit string.</li>
 </ul>
 
 <h1>File Manager</h1>
@@ -29,8 +30,9 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 <ul>
 	<li>randomlistpicker(usrlist) return a random entry in the 'usrlist'.</li>
 	<li>letter_randomizer(words) take all characters in a string (single word / sentence) or in a list of words and randomize them to return an "anagram"</li>
-	<li>calculator.launch() enables to launch a python calculator console (works in radians)</li>
+	<li>now() return a list with [day name, day number, month name, year, hour, minute, second]</li>
 	<li>menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.</li>
+	<li>calculator.launch() enables to launch a python calculator console (works in radians)</li>
 </ul>
 
 <h1>Errors</h1>

@@ -30,3 +30,5 @@ def main():
 		sys.exit(0)
 	else:
 		print(eval(calcul))
+		print()
+	main()
