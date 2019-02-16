@@ -10,7 +10,7 @@ And when you stop it, it will return the actual time and the elapsed time betwee
 
 <h1>Decryptor</h1>
 The decryptor (as said by his own name) can encrypt and decrypt simple cypher algorithms.<br/>
-<p>For now, there are 2 algorithms :</p>
+<p>For now, there are 4 algorithms :</p>
 <ul>
 	<li>alpha - It converts a string into a digit list and vice versa.</li>
 	<li>cesar - The cesar algorithm takes a string and shifts all characters to a certain position.</li>
