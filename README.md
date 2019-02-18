@@ -32,7 +32,8 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 	<li>letter_randomizer(words) take all characters in a string (single word / sentence) or in a list of words and randomize them to return an "anagram"</li>
 	<li>now() return a list with [day name, day number, month name, year, hour, minute, second]</li>
 	<li>menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.</li>
-	<li>calculator.launch() enables to launch a python calculator console (works in radians)</li>
+	<li>math_calc.launch() enables to launch a python calculator console (works in radians)</li>
+	<li>time_calc.launch() enables to launch a python calculator console that calculate time</li>
 </ul>
 
 <h1>Errors</h1>
