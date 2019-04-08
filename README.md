@@ -40,5 +40,5 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 	<ul>
 		<li>TypeError - a function may return this error because an arguments' type isn't correct</li>
 		<li>FileExistsError - a function in the file_manager may return this error because the modified file had the same name as an existing file</li>
-		<li>InputError - char_delete may return this error because 'char' must be a single character</li>
+		<li>InputError - a function may return this error because an argument isn't correctly formatted</li>
 	</ul>
