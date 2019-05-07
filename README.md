@@ -1,12 +1,12 @@
 <h1>Intro</h1>
-Hi there! Here is where you can find examples and explanations to use this module perfectly!
+Hi there! Here is where you can find explanations to use this module perfectly!
 
 <h6>WARNING<br/>This module is written for Windows. Some things could not work properly on other OSs.</h6>
 
 <h1>Chronometer</h1>
 This chronometer is pretty simple.<br/>
-When you start it, it will return the actual system time. You just need to store this formatted time in a variable.<br/>
-And when you stop it, it will return the actual time and the elapsed time between the start and now.<br/>
+You can start it with Chrono.start() and stop it with Chrono.stop()<br/>
+It will return a list of 3 float corresponding to the chronometer's result : [hours, minutes, seconds]<br/>
 
 <h1>Decryptor</h1>
 The decryptor (as said by his own name) can encrypt and decrypt simple cypher algorithms.<br/>
@@ -40,5 +40,5 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 	<ul>
 		<li>TypeError - a function may return this error because an arguments' type isn't correct</li>
 		<li>FileExistsError - a function in the file_manager may return this error because the modified file had the same name as an existing file</li>
-		<li>InputError - char_delete may return this error because 'char' must be a single character</li>
+		<li>InputError - a function may return this error because an argument isn't correctly formatted</li>
 	</ul>
