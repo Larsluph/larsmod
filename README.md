@@ -1,7 +1,7 @@
 <h1>Intro</h1>
 Hi there! Here is where you can find explanations to use this module perfectly!
 
-<h6>WARNING<br/>This module is written for Windows. Some things could not work properly on other OSs.</h6>
+<h6>WARNING<br/>This module is written for Windows in Python3. Some things could not work properly.</h6>
 
 <h1>Chronometer</h1>
 This chronometer is pretty simple.<br/>
