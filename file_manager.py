@@ -15,7 +15,7 @@ def prefix_delete(path, prefix):
 			try:
 				os.rename(path + "\\" + current, path + "\\" + current[len(prefix) :])
 			except FileExistsError:
-				raise ("Unable to rename file '{}' because the file already exists. skipping...".format(current) )
+				raise (f"Unable to rename file '{current}' because the file already exists. skipping...")
 			break
 
 def suffix_delete(path, suffix):
@@ -28,7 +28,7 @@ def suffix_delete(path, suffix):
 			try:
 				os.rename(path + "\\" + current, path + "\\" + os.path.splitext(current)[0][: len(os.path.splitext(current)[0]) - len(suffix)] + os.path.splitext(current)[1])
 			except FileExistsError:
-				raise ("Unable to rename file '{}' because the file already exists. skipping...".format(current) )
+				raise (f"Unable to rename file '{current}' because the file already exists. skipping...")
 			break
 	
 def char_delete(path, char):
@@ -45,7 +45,7 @@ def char_delete(path, char):
 				try:
 					os.rename(path + "\\" + current, path + "\\" + current[index+1:])
 				except FileExistsError:
-					raise ("Unable to rename file '{}' because the file already exists. skipping...".format(current) )
+					raise (f"Unable to rename file '{current}' because the file already exists. skipping...")
 				break
 	
 def char_nbr_delete(path, char_nbr):
@@ -57,5 +57,5 @@ def char_nbr_delete(path, char_nbr):
 		try:
 			os.rename(path + "\\" + current, path + "\\" + current[char_nbr:])
 		except FileExistsError:
-			raise ("Unable to rename file '{}' because the file already exists. skipping...".format(current) )
+			raise (f"Unable to rename file '{current}' because the file already exists. skipping...")
 		break

@@ -5,7 +5,7 @@ from math import pi,cos,sin,tan,acos,asin,atan
 
 def launch():
 	os.system("cls")
-	calcul = print('Enter calculation ("help" and "quit" available): ')
+	print('Enter calculation ("help" and "quit" available): ')
 	main()
 
 def main():
