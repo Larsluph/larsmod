@@ -34,7 +34,7 @@ def letter_randomizer(words):
     string = str()
     
     for word in final:
-        string = str()
+        string = "".join(word)
         for letter in word:
             string += letter
         result.append(string)
@@ -42,8 +42,8 @@ def letter_randomizer(words):
     return result
     
 def now():
-    time.strftime('%A %d %B %Y')
-    time.strftime("%H:%M:%S")
+    # time.strftime('%A %d %B %Y')
+    # time.strftime("%H:%M:%S")
     final = [
         time.strftime('%A'),
         time.strftime('%d'),
@@ -55,34 +55,57 @@ def now():
     ]
     return final
     
-def menu_generator(title, init, inputs, output):
+def dec2base(n,base):
+    result = ""
+    if n == 0:
+        result = "0"
+    while n != 0:
+        r = n % base
+        result = str(r) + result
+        n = n // base
+    return result
+
+def base2dec(n,base):
+    result = 0
+    power = 0
+    while n > 0:
+        result += base**power*(n%10)
+        n //= 10
+        power += 1
+    return result
+
+def menu_generator(title, inputs, output, hidden={}):
     "generate a menu w/ inputs & outputs"
-
-    os.system("cls")
-    
-    if type(title) != str or type(init) != list or ( type(inputs) and type(output) ) != list:
+    if type(title) != str or ( type(inputs) and type(output) ) != list:
         raise TypeError("arguments provided are incorrects")
-    
-    for x in init:
-        exec(x)
         
-    print(title)
-    
-    for x in range(len(inputs)):
-        print(str(x+1) + ".", inputs[x])
-        
-    try:
-        choice = int(input("Enter your choice :\n"))
-    except ValueError:
-        print("your choice must be an integer")
-        os.system("pause")
+    errors = ["launch loop"]
+    while errors != []:
+        errors = []
         os.system("cls")
-        menu_generator(title, init, inputs, output)
+        
+        print(title.upper())
 
-    if choice < 1 or choice > len(inputs):
-        print("this option is out of range")
-        os.system("pause")
-        os.system("cls")
-        menu_generator(title, init, inputs, output)
-    
+        for x in range(len(inputs)):
+            print(str(x+1) + ".", inputs[x])
+
+        choice = input("Enter your choice :\n")
+
+        try:
+            choice = int(choice)
+        except ValueError:
+            if choice in hidden:
+                return hidden[choice]
+            else:
+                print("your choice must be an integer")
+                os.system("pause")
+                errors.append("not int")
+
+        if choice in hidden:
+            return hidden[choice]
+        elif choice < 1 or choice > len(inputs):
+            print("this option is out of range")
+            os.system("pause")
+            errors.append("OOB")
+        
     return output[choice-1]
