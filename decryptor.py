@@ -53,16 +53,9 @@ def cypher_cesar(data, indice):
 	alphabet = "abcdefghijklmnopqrstuvwxyz"
 	result = ""
 	for letter in data:
-		index = 0
-		for x in alphabet:
-			if x == letter.lower():
-				code = index + indice
-				while code < 1:
-					code += 26
-				while code > 26:
-					code -= 26
-				result += alphabet[code]
-			index += 1
+		index = alphabet.index(letter.lower())
+		code = (index + indice) % 26
+		result += alphabet[code]
 	return(result)
 	
 def cypher_morse(data):
@@ -148,7 +141,7 @@ def decypher_alpha(data):
 	return(result)
 
 def decypher_cesar(data, indice):
-	"decypher cesar encryption"
+	"decypher cesar encryption (str -> str)"
 	
 	if not(type(data) == str and type(indice) == int):
 		raise TypeError("given arguments are incorrect")
@@ -156,21 +149,11 @@ def decypher_cesar(data, indice):
 	alphabet = "abcdefghijklmnopqrstuvwxyz"
 	result = ""
 	for letter in data:
-		index = 0
-		for x in alphabet:
-			
-			if x == letter.lower():
-				code = index - indice
-				
-				while code < 1:
-					code += 26
-					
-				while code > 26:
-					code -= 26
-					
-				result += alphabet[code]
-			index += 1
+		index = alphabet.index(letter.lower())
+		code = (index - indice) % 26
+		result += alphabet[code]
 	return(result)
+
 def decypher_morse(data):
 	"decypher morse list to alphabet string"
 	if not(type(data) == list):
