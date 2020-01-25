@@ -46,7 +46,8 @@ def list_cycle(entry):
     if type(entry) != list:
         raise TypeError("argument must be a list")
 
-    pass
+    entry.insert(len(entry),entry.pop(0))
+    return 0
 
 def now():
     # time.strftime('%A %d %B %Y')
