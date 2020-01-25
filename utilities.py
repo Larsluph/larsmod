@@ -41,6 +41,13 @@ def letter_randomizer(words):
     
     return result
     
+def list_cycle(entry):
+    "enable to loop through multiple custom values in a list"
+    if type(entry) != list:
+        raise TypeError("argument must be a list")
+
+    pass
+
 def now():
     # time.strftime('%A %d %B %Y')
     # time.strftime("%H:%M:%S")
