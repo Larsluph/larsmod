@@ -33,7 +33,6 @@ The decryptor (as said by his own name) can encrypt and decrypt simple cypher al
 	<li>now() return a list with [day name, day number, month name, year, hour, minute, second]</li>
 	<li>menu_generator(title, init, inputs, output) display a generated menu with a title, inputs and outputs.</li>
 	<li>math_calc.launch() enables to launch a python calculator console (works in radians)</li>
-	<li>time_calc.launch() enables to launch a python calculator console that calculate time</li>
 </ul>
 
 <h1>Errors</h1>

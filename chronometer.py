@@ -14,10 +14,13 @@ class Chrono:
 
         lap = time.perf_counter() - self.begin
 
-        hours = lap // 3600
+        hours = round(lap // 3600)
         lap = lap % 3600
 
-        minutes = lap // 60
-        seconds = lap % 60
+        minutes = round(lap // 60)
+        lap = lap % 60
 
-        return [hours, minutes, seconds]
+        seconds = round(lap // 1)
+        ms = round(lap%1*1000)
+
+        return [hours, minutes, seconds,ms]
