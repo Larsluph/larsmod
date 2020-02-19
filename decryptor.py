@@ -53,9 +53,12 @@ def cypher_cesar(data, indice):
 	alphabet = "abcdefghijklmnopqrstuvwxyz"
 	result = ""
 	for letter in data:
-		index = alphabet.index(letter.lower())
-		code = (index + indice) % 26
-		result += alphabet[code]
+		try:
+			index = alphabet.index(letter.lower())
+			code = (index + indice) % 26
+			result += alphabet[code]
+		except:
+			result += letter
 	return(result)
 	
 def cypher_morse(data):
@@ -149,9 +152,12 @@ def decypher_cesar(data, indice):
 	alphabet = "abcdefghijklmnopqrstuvwxyz"
 	result = ""
 	for letter in data:
-		index = alphabet.index(letter.lower())
-		code = (index - indice) % 26
-		result += alphabet[code]
+		try:
+			index = alphabet.index(letter.lower())
+			code = (index - indice) % 26
+			result += alphabet[code]
+		except:
+			result += letter
 	return(result)
 
 def decypher_morse(data):
