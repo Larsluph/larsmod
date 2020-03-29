@@ -4,18 +4,10 @@
 
 import random, os, time
 
-def randomlistpicker(usrlist):
-  "Pick a random entry in given list"
-
-  if type(usrlist) != list:
-    raise TypeError("argument provided is not a list")
-
-  return(usrlist[random.randint(0,len(usrlist)-1)])
-
-def letter_randomizer(words):
+def letter_randomizer(words: Union[str,list]) -> list:
   'take all characters in a string (separate words by a space) and randomize them to return an "anagram"'
 
-  if not(type(words) == str or type(words) == list):
+  if not(isinstance(words,(str,list))):
     raise TypeError("argument must be a string (sentence or single word) or a list of words (order will be kept)")
 
   if type(words) == str:
@@ -29,7 +21,7 @@ def letter_randomizer(words):
   for word in result:
     random.shuffle(word)
 
-  final = result
+  final = result.copy()
   result = list()
   string = str()
 
@@ -41,15 +33,15 @@ def letter_randomizer(words):
 
   return result
 
-def list_cycle(entry):
+def list_cycle(entry: list) -> None:
   "enable to loop through multiple custom values in a list"
-  if type(entry) != list:
+  if not(isinstance(entry,list)):
     raise TypeError("argument must be a list")
 
   entry.insert(len(entry),entry.pop(0))
-  return 0
+  return
 
-def now():
+def now() -> list:
   # time.strftime('%A %d %B %Y')
   # time.strftime("%H:%M:%S")
   final = [
@@ -63,7 +55,7 @@ def now():
   ]
   return final
 
-def dec2base(n,base):
+def dec2base(n: int,base: int) -> str:
   result = ""
   if n == 0:
     result = "0"
@@ -73,7 +65,7 @@ def dec2base(n,base):
     n = n // base
   return result
 
-def base2dec(n,base):
+def base2dec(n: int,base: int) -> int:
   result = 0
   power = 0
   while n > 0:
@@ -82,18 +74,18 @@ def base2dec(n,base):
     power += 1
   return result
 
-def find_all(string,substring):
-  result = set()
+def find_all(string: Union[str,bytes],substring: Union[str,bytes]) -> list:
+  result = []
   current = string.find(substring)
   while current != -1:
-    result.add(current)
+    result.append(current)
     current = string.find(substring,current+1)
 
   return result
 
-def menu_generator(title, inputs, output, hidden={}):
+def menu_generator(title: str, inputs: list, output: list, hidden: dict ={}) -> "choice in output":
   "generate a menu w/ inputs & outputs"
-  if type(title) != str or ( type(inputs) and type(output) ) != list:
+  if not(isinstance(title, str) and isinstance(inputs,list) and isinstance(output, list)):
     raise TypeError("arguments provided are incorrects")
 
   errors = ["launch loop"]

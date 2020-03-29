@@ -2,8 +2,8 @@
 # -*- coding:utf-8 -*-
 "a package by Larsluph w/ useful modules"
 
-from custom_module import chronometer
-from custom_module import decryptor
-from custom_module import file_manager
-from custom_module import math_calc
-from custom_module import utilities
+from . import chronometer
+from . import decryptor
+from . import file_manager
+from . import math_calc
+from . import utilities
