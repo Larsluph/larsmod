@@ -2,7 +2,11 @@
 # -*- coding:utf-8 -*-
 "a module w/ useful tools"
 
-import random, os, time
+import os
+import random
+import time
+from typing import Union, Iterable
+
 
 def letter_randomizer(words: Union[str,list]) -> list:
   'take all characters in a string (separate words by a space) and randomize them to return an "anagram"'
@@ -74,7 +78,16 @@ def base2dec(n: int,base: int) -> int:
     power += 1
   return result
 
-def find_all(string: Union[str,bytes],substring: Union[str,bytes]) -> list:
+def search(iterable: Iterable, substring: str) -> list:
+  result = list()
+
+  for x in iterable:
+    if substring in x:
+      result.append(x)
+
+  return result
+
+def find_all(string: Union[str,bytes], substring: Union[str,bytes]) -> list:
   result = []
   current = string.find(substring)
   while current != -1:
@@ -83,7 +96,7 @@ def find_all(string: Union[str,bytes],substring: Union[str,bytes]) -> list:
 
   return result
 
-def menu_generator(title: str, inputs: list, output: list, hidden: dict ={}) -> "choice in output":
+def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) -> "choice in output":
   "generate a menu w/ inputs & outputs"
   if not(isinstance(title, str) and isinstance(inputs,list) and isinstance(output, list)):
     raise TypeError("arguments provided are incorrects")
