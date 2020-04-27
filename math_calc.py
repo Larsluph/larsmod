@@ -1,7 +1,9 @@
 #-*- coding:utf-8 *-
-import os, sys, math
-from math import sqrt
-from math import pi,cos,sin,tan,acos,asin,atan
+import math
+import os
+import sys
+from math import acos, asin, atan, cos, pi, sin, sqrt, tan
+
 
 def launch():
   os.system("cls")

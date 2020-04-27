@@ -2,7 +2,9 @@
 # -*- coding:utf-8 -*-
 "basic python chronometer (support laps)"
 
-import os,time
+import os
+import time
+
 
 class Chrono:
   def start(self):

@@ -1,11 +1,11 @@
-#!usr/bin/env python
+#!usr/bin/env python3
 # -*- coding:utf-8 -*-
 "a module w/ useful tools"
 
 import os
 import random
 import time
-from typing import Union, Iterable
+from typing import Iterable, Union
 
 
 def letter_randomizer(words: Union[str,list]) -> list:
@@ -78,6 +78,23 @@ def base2dec(n: int,base: int) -> int:
     power += 1
   return result
 
+def strfill(string: str, length: int, fill: str = " ", before: bool = False):
+  "same as zfill but more customizable"
+  sub = str()
+  length = length - len(string)
+
+  i=0
+  while len(sub) < length:
+    sub += fill[i % len(fill)]
+    i += 1
+
+  if before:
+    string = sub + string
+  else:
+    string = string + sub
+
+  return string
+
 def search(iterable: Iterable, substring: str) -> list:
   result = list()
 
@@ -122,6 +139,7 @@ def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) ->
         print("your choice must be an integer")
         os.system("pause")
         errors.append("not int")
+        continue
 
     if choice in hidden:
       return hidden[choice]
@@ -129,5 +147,6 @@ def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) ->
       print("this option is out of range")
       os.system("pause")
       errors.append("OOB")
+      continue
 
   return output[choice-1]

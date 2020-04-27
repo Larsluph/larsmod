@@ -2,7 +2,10 @@
 # -*- coding:utf-8 -*-
 "a module to (de)cypher data"
 
-import time, os, random
+import os
+import random
+import time
+
 
 def cypher_alpha(data: str) -> list:
   if not(isinstance(data,str)):
