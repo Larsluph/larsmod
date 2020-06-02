@@ -4,25 +4,28 @@
 
 import os
 import time
+from collections import namedtuple
 
 
 class Chrono:
-  def start(self):
-    "start the chronometer"
-    self.begin = time.perf_counter()
+  "stores the start and stop time to compute the time passed between these two"
+  time_tuple = namedtuple("chrono_time", "days, hours, minutes, seconds, ms")
 
-  def stop(self):
+  def start(self) -> None:
+    "start/reset the chronometer"
+    self._begin = time.perf_counter() # stores the begin time
+    return None
+
+  def lap(self) -> time_tuple:
     "return a lap"
 
-    lap = time.perf_counter() - self.begin
+    lap = time.perf_counter() - self._begin # compute time delta in seconds
 
-    hours = round(lap // 3600)
-    lap = lap % 3600
+    # compute all time units from lap
+    ms = round(lap%1 * 1000)
+    seconds = round(lap)
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
 
-    minutes = round(lap // 60)
-    lap = lap % 60
-
-    seconds = round(lap // 1)
-    ms = round(lap%1*1000)
-
-    return [hours, minutes, seconds,ms]
+    return self.time_tuple(days, hours, minutes, seconds, ms) # return a named tuple

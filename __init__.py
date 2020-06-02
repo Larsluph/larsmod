@@ -2,10 +2,12 @@
 # -*- coding:utf-8 -*-
 "a package by Larsluph w/ useful modules"
 
-from . import chronometer
-from . import decryptor
-from . import file_manager
-from . import math_calc
-from . import networking
-from . import utilities
-from . import progressbar
+import os
+
+from . import (chronometer, decryptor, file_manager, math_calc, networking,
+               utilities)
+
+if os.name == "nt":
+  from . import notifications_nt as notifications
+elif os.name == "posix":
+  raise NotImplementedError

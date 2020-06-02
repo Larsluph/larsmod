@@ -105,6 +105,7 @@ def search(iterable: Iterable, substring: str) -> list:
   return result
 
 def find_all(string: Union[str,bytes], substring: Union[str,bytes]) -> list:
+  "find all occurences of {substring} in {string}"
   result = []
   current = string.find(substring)
   while current != -1:
@@ -128,7 +129,7 @@ def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) ->
     for x in range(len(inputs)):
       print(str(x+1) + ".", inputs[x])
 
-    choice = input("Enter your choice :\n")
+    choice = input("\nEnter your choice :\n")
 
     try:
       choice = int(choice)

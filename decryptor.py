@@ -5,48 +5,25 @@
 import os
 import random
 import time
+import string
 
 
 def cypher_alpha(data: str) -> list:
   if not(isinstance(data,str)):
     raise TypeError("given argument is not a string")
 
-  alphabet = {
-    "a" : 1,
-    "b" : 2,
-    "c" : 3,
-    "d" : 4,
-    "e" : 5,
-    "f" : 6,
-    "g" : 7,
-    "h" : 8,
-    "i" : 9,
-    "j" : 10,
-    "k" : 11,
-    "l" : 12,
-    "m" : 13,
-    "n" : 14,
-    "o" : 15,
-    "p" : 16,
-    "q" : 17,
-    "r" : 18,
-    "s" : 19,
-    "t" : 20,
-    "u" : 21,
-    "v" : 22,
-    "w" : 23,
-    "x" : 24,
-    "y" : 25,
-    "z" : 26,
-    " " : " "
-  }
+  alpha = string.ascii_lowercase
+  alphabet = dict(alpha, range(1, len(alpha)+1))
   result = list()
   for letter in data:
-    result.append(alphabet[letter])
+    if letter not in alpha:
+      result.append(letter)
+    else:
+      result.append(alphabet[letter])
   return result
 
 def cypher_cesar(data: str, indice: int) -> str:
-  if not(isinstance(data,str) and isinstance(indice,int)):
+  if not(isinstance(data, str) and isinstance(indice, int)):
     raise TypeError("given arguments are incorrect")
 
   alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -144,54 +121,30 @@ def cypher_numpad(data: str) -> str:
   return final
 
 def decypher_alpha(data: list) -> str:
-  if not(isinstance(data,list)):
+  if not(isinstance(data, list)):
     raise TypeError("given argument is not a list")
-  alphabet = {
-    1 : "a",
-    2 : "b",
-    3 : "c",
-    4 : "d",
-    5 : "e",
-    6 : "f",
-    7 : "g",
-    8 : "h",
-    9 : "i",
-    10 : "j",
-    11 : "k",
-    12 : "l",
-    13 : "m",
-    14 : "n",
-    15 : "o",
-    16 : "p",
-    17 : "q",
-    18 : "r",
-    19 : "s",
-    20 : "t",
-    21 : "u",
-    22 : "v",
-    23 : "w",
-    24 : "x",
-    25 : "y",
-    26 : "z",
-    " " : " "
-  }
+  alpha = string.ascii_lowercase
+  alphabet = dict(range(1, len(alpha)+1), alpha)
   result = str()
   for digit in data:
-    result += alphabet[digit]
+    if digit in data:
+      result += alphabet[digit]
+    else:
+      result += digit
   return result
 
 def decypher_cesar(data: str, indice: int) -> str:
-  if not(isinstance(data,str) and isinstance(indice,int)):
+  if not(isinstance(data, str) and isinstance(indice, int)):
     raise TypeError("given arguments are incorrect")
 
-  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  alphabet = string.ascii_lowercase
   result = ""
   for letter in data:
-    try:
+    if letter in alphabet:
       index = alphabet.index(letter.lower())
       code = (index - indice) % 26
       result += alphabet[code]
-    except:
+    else:
       result += letter
   return result
 

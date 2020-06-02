@@ -74,8 +74,8 @@ def char_nbr_delete(path: str, char_nbr: int) -> None:
 
   return
 
-def search(path: str, keyword: str, subfolder: bool = False) -> "returns a tuple as [folders,files] (each one are lists)":
-  "serach for {keyword} in the folder {path}"
+def search(path: str, keyword: str, subfolder: bool = False) -> tuple:
+  "serach for {keyword} in the folder {path}\nReturns [folders, files] (both are lists)"
 
   if not( isinstance(path, str) and isinstance(keyword, str) and isinstance(subfolder, bool) ):
     raise TypeError("arguments' types are not valid")
@@ -98,9 +98,10 @@ def search(path: str, keyword: str, subfolder: bool = False) -> "returns a tuple
     if keyword in filename:
       files_results.append("".join([path,os.sep,filename]))
 
-  return folder_results,files_results
+  return folder_results, files_results
 
 def copy(source_path: str, target_path: str, replace: bool = False) -> None:
+  "copy a file from {source_path} to {target_path}\nReturns 1 if file already exists"
   if not(isinstance(source_path, str) and isinstance(target_path, str)):
     raise TypeError("arguments' types are not valid")
 
@@ -111,7 +112,7 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> None:
     if replace:
       pass
     else:
-      raise FileExistsError("set replace to True if you want to replace")
+      return 1
   else:
     os.system(f"mkdir {os.path.dirname(target_path)}")
 
@@ -121,7 +122,7 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> None:
   size = divmod(os.path.getsize(source_file), 1024)
 
   for i in range(size[0]):
-    target_file.write(source_file.read(i*1024))
+    target_file.write(source_file.read(1024))
   else:
     target_file.write(source_file.read(size[1]))
 
@@ -130,17 +131,20 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> None:
   return
 
 def delete(source_path: str) -> None:
+  "delete a file permanently without confirmation"
   with open(source_path, mode='wb') as f:
-    f.write(0x00)
-  os.remove(source_path)
+    f.write(0x00) # wipe all file content
+  os.remove(source_path) # then delete the file without the original content to make sure no data can be recovered
   return
 
 def move(source_path: str, target_path: str) -> None:
+  "copy a file from {source_path} to {target_path} then deletes {source_path}"
   copy(source_path, target_path)
   delete(source_path)
   return
 
 def list_files(dirpath: str = ".", count: bool = False) -> tuple:
+  "list all files and folder in the {dirpath} folder and all subfolders"
   if count:
     folders = 0
     files = 0
@@ -148,7 +152,7 @@ def list_files(dirpath: str = ".", count: bool = False) -> tuple:
     folders = list()
     files = list()
 
-  for dirpath,dirnames, filenames in os.walk(dirpath):
+  for dirpath, dirnames, filenames in os.walk(dirpath):
     if count:
       folders += len(dirnames)
       files += len(filenames)
@@ -156,7 +160,7 @@ def list_files(dirpath: str = ".", count: bool = False) -> tuple:
       [folders.append("".join([dirpath, os.sep, dirname])) for dirname in dirnames]
       [files.append("".join([dirpath, os.sep, filename])) for filename in filenames]
 
-  return folders,files
+  return folders, files
 
 def zip_files(files: list, target_path: str) -> None:
   "zip every {files} to {target_path}"
