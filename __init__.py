@@ -6,8 +6,3 @@ import os
 
 from . import (chronometer, decryptor, file_manager, math_calc, networking,
                utilities)
-
-if os.name == "nt":
-  from . import notifications_nt as notifications
-elif os.name == "posix":
-  raise NotImplementedError

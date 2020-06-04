@@ -5,6 +5,7 @@
 
 import os
 import zipfile
+from typing import Union
 
 def prefix_delete(path: str, prefix: str) -> None:
   "delete same prefix of mass files in one folder"
@@ -87,8 +88,8 @@ def search(path: str, keyword: str, subfolder: bool = False) -> tuple:
     folders, files = list_files(path)
 
   else:
-    folders = [ dirname for dirname in os.listdir(path) if os.path.isdir(os.path.join(path, dirname)) ]
-    files = [ filename for filename in os.listdir(path) if os.path.isfile(os.path.join(path, filename)) ]
+    folders = [dirname for dirname in os.listdir(path) if os.path.isdir(os.path.join(path, dirname))]
+    files = [filename for filename in os.listdir(path) if os.path.isfile(os.path.join(path, filename))]
 
   for dirname in folders:
     if keyword in dirname:
@@ -99,6 +100,30 @@ def search(path: str, keyword: str, subfolder: bool = False) -> tuple:
       files_results.append("".join([path,os.sep,filename]))
 
   return folder_results, files_results
+
+def replace_in_file(path: Union[str, list], old: str, new: str):
+  if isinstance(path, list):
+    filenames = path
+  elif isinstance(path, str):
+    if os.path.isdir(path):
+      filenames = list_files(path)[1]
+    else:
+      filenames = [path]
+  else:
+    raise TypeError("arguments' types are not valid")
+
+  for filename in filenames:
+    with open(filename, 'r') as f:
+      content = f.read()
+    if not(new in txt): # if new not already replaced
+      txt = txt.replace(old, new) # replace old by new
+    else:
+      continue
+
+    with open(filename, 'w') as f:
+      f.write(txt)
+
+  return
 
 def copy(source_path: str, target_path: str, replace: bool = False) -> None:
   "copy a file from {source_path} to {target_path}\nReturns 1 if file already exists"
