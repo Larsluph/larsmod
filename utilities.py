@@ -87,6 +87,9 @@ def base2dec(n: int, base: int) -> int:
 def strfill(string: str, length: int, fill: str = " ", before: bool = False):
     "same as zfill but more customizable"
     sub = str()
+    if not(isinstance(string, str)):
+        string = repr(string)
+    assert isinstance(string, str)
     length = length - len(string)
 
     i = 0
