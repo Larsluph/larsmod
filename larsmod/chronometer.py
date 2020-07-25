@@ -16,7 +16,7 @@ class Chrono:
         self._begin = time.perf_counter()  # stores the begin time
         return None
 
-    def lap(self) -> self.time_tuple:
+    def lap(self) -> time_tuple:
         "return a lap"
 
         lap = time.perf_counter() - self._begin  # compute time delta in seconds

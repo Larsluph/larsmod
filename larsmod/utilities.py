@@ -5,7 +5,7 @@
 import os
 import random
 import time
-from typing import Iterable, Union
+from typing import Any, Iterable, Union
 
 
 def letter_randomizer(words: Union[str, list]) -> list:
@@ -40,7 +40,7 @@ def letter_randomizer(words: Union[str, list]) -> list:
 
 
 def list_cycle(entry: list) -> None:
-    "enable to loop through multiple custom values in a list"
+    "enable to loop through values in a list"
     if not(isinstance(entry, list)):
         raise TypeError("argument must be a list")
 
@@ -48,22 +48,8 @@ def list_cycle(entry: list) -> None:
     return
 
 
-def now() -> list:
-    # time.strftime('%A %d %B %Y')
-    # time.strftime("%H:%M:%S")
-    final = [
-        time.strftime('%A'),
-        time.strftime('%d'),
-        time.strftime('%B'),
-        time.strftime('%Y'),
-        time.strftime("%H"),
-        time.strftime("%M"),
-        time.strftime("%S")
-    ]
-    return final
-
-
 def dec2base(n: int, base: int) -> str:
+    "convert number {n} from base 10 to base {base}"
     result = ""
     if n == 0:
         result = "0"
@@ -75,6 +61,7 @@ def dec2base(n: int, base: int) -> str:
 
 
 def base2dec(n: int, base: int) -> int:
+    "convert number {n} from base {base} to base 10"
     result = 0
     power = 0
     while n > 0:
@@ -84,7 +71,7 @@ def base2dec(n: int, base: int) -> int:
     return result
 
 
-def strfill(string: str, length: int, fill: str = " ", before: bool = False):
+def strfill(string: Any, length: int, fill: str = " ", before: bool = False):
     "same as zfill but more customizable"
     sub = str()
     if not(isinstance(string, str)):
