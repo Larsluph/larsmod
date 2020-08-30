@@ -50,6 +50,36 @@ def suffix_delete(path: str, suffix: str) -> None:
     return
 
 
+def rename(path: str, old: str, new: str) -> None:
+    "rename all files in the folder {path}"
+    if not(isinstance(path, str) and isinstance(old, str) and isinstance(new, str)):
+        raise TypeError("arguments' type are not valid")
+
+    # create a list with all the filenames in folder 'path'
+    files = os.listdir(path)
+
+    for current in files:
+        try:
+            os.rename(path + os.sep + current, path + os.sep + current.replace(old, new))
+        except FileExistsError:
+            print(f"Unable to rename file '{current}' because the file already exists. Skipping...")
+
+
+def lower(path: str) -> None:
+    "rename all files in the folder {path} to lowercase"
+    if not(isinstance(path, str)):
+        raise TypeError("arguments' type are not valid")
+
+    # create a list with all the filenames in folder 'path'
+    files = os.listdir(path)
+
+    for current in files:
+        try:
+            os.rename(path + os.sep + current, path + os.sep + current.lower())
+        except FileExistsError:
+            print(f"Unable to rename file '{current}' because the file already exists. Skipping...")
+
+
 def char_delete(path: str, substring: str) -> None:
     "delete filename up to a certain substring"
 

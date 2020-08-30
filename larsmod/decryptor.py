@@ -13,7 +13,7 @@ def cypher_alpha(data: str) -> list:
         raise TypeError("given argument is not a string")
 
     alpha = string.ascii_lowercase
-    alphabet = dict(alpha, range(1, len(alpha)+1))
+    alphabet = dict(zip(alpha, range(1, len(alpha)+1)))
     result = list()
     for letter in data:
         if letter not in alpha:
