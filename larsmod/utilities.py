@@ -92,7 +92,7 @@ def strfill(string: Any, length: int, fill: str = " ", before: bool = False):
     return string
 
 
-def search(iterable: Iterable, substring: str) -> list:
+def search(iterable: Iterable, substring: Any) -> list:
     result = list()
 
     for x in iterable:
@@ -102,15 +102,23 @@ def search(iterable: Iterable, substring: str) -> list:
     return result
 
 
-def find_all(string: Union[str, bytes], substring: Union[str, bytes]) -> list:
-    "find all occurences of {substring} in {string}"
-    result = []
-    current = string.find(substring)
-    while current != -1:
-        result.append(current)
-        current = string.find(substring, current+1)
+def find_all(iterable: Iterable, x: Any) -> list:
+    "find all occurences of {x} in {iterable}"
 
-    return result
+    result = []
+
+    if isinstance(iterable, str):
+        current = iterable.find(x)
+        while current != -1:
+            result.append(current)
+            current = iterable.find(x, current+1)
+
+    else:
+        for i in range(len(iterable)):
+            if x == iterable[i]:
+                result.append(i)
+
+        return result
 
 
 def password_generator(length: int, chars: Iterable = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'):
