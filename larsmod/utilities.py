@@ -4,8 +4,9 @@
 
 import os
 import random
+import secrets
 import time
-from typing import Any, Iterable, Union
+from typing import Any, Iterable, Union, Optional
 
 
 def letter_randomizer(words: Union[str, list]) -> list:
@@ -112,21 +113,38 @@ def find_all(iterable: Iterable, x: Any) -> list:
         while current != -1:
             result.append(current)
             current = iterable.find(x, current+1)
-
     else:
-        for i in range(len(iterable)):
-            if x == iterable[i]:
+        for i, it in enumerate(iterable):
+            if x == it:
                 result.append(i)
 
-        return result
+    return result
 
 
-def password_generator(length: int, chars: Iterable = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'):
-    "returns a randomly-generated password of length {length} containing only {chars} characters"
-    gen = str()
-    for _ in range(length):
-        gen += chars[random.randint(0, len(chars)-1)]
-    return gen
+def chunks(data: Iterable, chunk_size: int, *, callback: Optional=None, reverse: bool=False):
+    "split {data} into n-sized chunks"
+    if reverse:
+        result = list()
+        for i in range(len(data), 0, -chunk_size):
+            i_min = i-chunk_size if i > chunk_size else 0
+            if callable(callback):
+                temp = callback(data[i_min:i])
+            else:
+                temp = data[i_min:i]
+            result.append(temp)
+        return result[::-1]
+    else:
+        return [callback(data[i:i+chunk_size]) if callback(callback) else data[i:i+chunk_size] for i in range(0, len(data), chunk_size)]
+
+
+def password_generator(length: int, chars: Iterable=None):
+    """
+    returns a randomly-generated password of length {length} containing only {chars} characters.
+    If chars is omitted, character used will be all printable ASCII characters
+    """
+    if chars == None:
+        chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+    return ''.join(secrets.choice(chars) for _ in range(length))
 
 
 def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) -> "choice in output":

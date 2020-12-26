@@ -4,13 +4,13 @@
 import psutil
 
 
-def get_addrs(addr_type: str = None) -> dict:
+def _get_addrs(addr_type: str = None) -> dict:
     """\
     fetch all addresses with family type {addr_type}
-      - addr_type:  MAC: "AF_LINK", IPv4: "AF_INET", IPv6: "AF_INET6"
+      - addr_type:  MAC="AF_LINK", IPv4="AF_INET", IPv6="AF_INET6"
 
-                    If None, it will return: {adapter_name: {family: address, ...}, ...}
-                    else, it will return: {adapter_name: address, ...}
+            If None, it will return: {adapter_name: {family: address, ...}, ...}
+            else, it will return: {adapter_name: address, ...}
     """
     addresses = psutil.net_if_addrs()  # get all adapter data
     nic_name = list(addresses.keys())  # separate adapters' name
@@ -29,22 +29,22 @@ def get_addrs(addr_type: str = None) -> dict:
     return nic_addrs
 
 
-def get_inet4_addrs() -> dict:
+def get_ip4_addrs() -> dict:
     """\
     fetch all IPv4 adresses on the registered adapters
 
     returns: {adapter_name : IPv4}
     """
-    return get_addrs("AF_INET")
+    return _get_addrs("AF_INET")
 
 
-def get_inet6_addrs() -> dict:
+def get_ip6_addrs() -> dict:
     """\
     fetch all IPv6 adresses on the registered adapters
 
     returns: {adapter_name : IPv6}
     """
-    return get_addrs("AF_INET6")
+    return _get_addrs("AF_INET6")
 
 
 def get_mac_addrs() -> dict:
@@ -53,4 +53,4 @@ def get_mac_addrs() -> dict:
 
     returns: {adapter_name : MAC}
     """
-    return get_addrs("AF_LINK")
+    return _get_addrs("AF_LINK")
