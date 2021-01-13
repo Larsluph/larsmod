@@ -253,10 +253,8 @@ def list_files(dirpath: str = ".", count: bool = False) -> tuple:
             folders += len(dirnames)
             files += len(filenames)
         else:
-            [folders.append("".join([dirpath, os.sep, dirname]))
-             for dirname in dirnames]
-            [files.append("".join([dirpath, os.sep, filename]))
-             for filename in filenames]
+            folders.extend(["".join([dirpath, os.sep, dirname]) for dirname in dirnames])
+            files.extend(["".join([dirpath, os.sep, filename]) for filename in filenames])
 
     return folders, files
 
