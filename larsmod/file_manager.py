@@ -95,7 +95,7 @@ def upper(path: str) -> None:
             print(f"Unable to rename file '{current}' because the file already exists. Skipping...")
 
 
-def char_delete(path: str, substring: str) -> None:
+def char_delete(path: str, substring: str, maxcount: int=-1) -> None:
     "delete filename up to a certain substring"
 
     if not(isinstance(path, str) and isinstance(substring, str)):
@@ -103,9 +103,11 @@ def char_delete(path: str, substring: str) -> None:
 
     # create a list with all the filenames in folder 'path'
     files = os.listdir(path)
+    counter = 0
 
-    for current in files:            # for each file in the folder
+    for current in files: # for each file in the folder
         if substring in current:  # only check those with the substring in the filename
+            counter += 1
             # if the substring is in it then get the index of the first occurence
             index = current.index(substring)
             try:  # and try to rename it
@@ -115,7 +117,8 @@ def char_delete(path: str, substring: str) -> None:
                 print(
                     f"Unable to rename file '{current}' because the file already exists. Skipping...")
 
-    return
+            if counter >= maxcount and maxcount > 0:
+                return
 
 
 def char_nbr_delete(path: str, char_nbr: int) -> None:
@@ -134,8 +137,6 @@ def char_nbr_delete(path: str, char_nbr: int) -> None:
         except FileExistsError:
             print(
                 f"Unable to rename file '{current}' because the file already exists. Skipping...")
-
-    return
 
 
 def search(path: str, keyword: str, subfolder: bool = False) -> tuple:
