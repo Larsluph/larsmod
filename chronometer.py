@@ -1,26 +1,34 @@
-#!usr/bin/env python
-# -*- coding:utf-8 -*-
-"basic python chronometer (support laps)"
+"""
+basic python chronometer (support laps)
+"""
 
-import os
-import time
+from time import perf_counter
 from collections import namedtuple
 
 
 class Chrono:
-    "stores the start and stop time to compute the time passed between these two"
+    """
+    Stores the start and stop time to compute the time passed between these two
+    """
 
     time_tuple = namedtuple("chrono_time", "days,hours,minutes,seconds,ms")
 
+    def __init__(self):
+        self._begin = 0
+
     def start(self) -> None:
-        "start/reset the chronometer"
-        self._begin = time.perf_counter()  # stores the begin time
+        """
+        Start/Reset the chronometer
+        """
+        self._begin = perf_counter()  # stores the begin time
         return None
 
     def lap(self) -> time_tuple:
-        "return a lap"
+        """
+        Return elapsed time since last start
+        """
 
-        lap = time.perf_counter() - self._begin  # compute time delta in seconds
+        lap = perf_counter() - self._begin  # compute time delta in seconds
 
         # compute all time units from lap
         ms = round(lap % 1 * 1000)

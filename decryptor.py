@@ -1,10 +1,7 @@
-#!usr/bin/env python
-# -*- coding:utf-8 -*-
-"a module to (de)cypher data"
+"""
+Module to (de)cypher data
+"""
 
-import os
-import random
-import time
 import string
 
 
@@ -27,14 +24,14 @@ def cypher_cesar(data: str, indice: int) -> str:
     if not(isinstance(data, str) and isinstance(indice, int)):
         raise TypeError("given arguments are incorrect")
 
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    alphabet = string.ascii_lowercase
     result = ""
     for letter in data:
         try:
             index = alphabet.index(letter.lower())
             code = (index + indice) % 26
             result += alphabet[code]
-        except:
+        except (ValueError, KeyError):
             result += letter
     return result
 
@@ -118,7 +115,7 @@ def cypher_numpad(data: str) -> str:
         else:
             try:
                 final += int(data[indice])
-            except:
+            except (ValueError, KeyError):
                 final += "1"
         indice += 1
     return final
@@ -128,7 +125,7 @@ def decypher_alpha(data: list) -> str:
     if not(isinstance(data, list)):
         raise TypeError("given argument is not a list")
     alpha = string.ascii_lowercase
-    alphabet = dict(range(1, len(alpha)+1), alpha)
+    alphabet = dict(zip(range(1, len(alpha)+1), alpha))
     result = str()
     for digit in data:
         if digit in data:

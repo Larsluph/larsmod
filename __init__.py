@@ -1,8 +1,5 @@
-#!usr/bin/env python
-# -*- coding:utf-8 -*-
-"a package by Larsluph w/ useful modules"
+"""
+a package by Larsluph w/ misc modules and functions
+"""
 
-import os
-
-from . import (chronometer, decryptor, file_manager, math_calc, networking,
-               utilities)
+from . import chronometer, decryptor, file_manager, math_calc, networking, utilities
