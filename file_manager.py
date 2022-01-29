@@ -1,7 +1,4 @@
-#!usr/bin/env python
-# -*- coding:utf-8 -*-
-
-"a module to manage files easily"
+"""a module to manage files easily"""
 
 import os
 import zipfile
@@ -9,9 +6,9 @@ from typing import Union
 
 
 def prefix_delete(path: str, prefix: str) -> None:
-    "delete same prefix of mass files in one folder"
+    """delete same prefix of mass files in one folder"""
 
-    if not(isinstance(path, str) and isinstance(prefix, str)):
+    if not (isinstance(path, str) and isinstance(prefix, str)):
         raise TypeError("arguments' types are not valid")
 
     # create a list with all the filenames in folder 'path'
@@ -30,9 +27,9 @@ def prefix_delete(path: str, prefix: str) -> None:
 
 
 def suffix_delete(path: str, suffix: str) -> None:
-    "delete same suffix of mass files in one folder"
+    """delete same suffix of mass files in one folder"""
 
-    if not(isinstance(path, str) and isinstance(suffix, str)):
+    if not (isinstance(path, str) and isinstance(suffix, str)):
         raise TypeError("arguments' type are not valid")
 
     # create a list with all the filenames in folder 'path'
@@ -42,7 +39,9 @@ def suffix_delete(path: str, suffix: str) -> None:
         if os.path.splitext(current)[0][len(os.path.splitext(current)[0]) - len(suffix):] == suffix:
             try:
                 os.rename(path + os.sep + current, path + os.sep + os.path.splitext(current)[
-                          0][: len(os.path.splitext(current)[0]) - len(suffix)] + os.path.splitext(current)[1])
+                                                                       0][
+                                                                   : len(os.path.splitext(current)[0]) - len(suffix)] +
+                          os.path.splitext(current)[1])
             except FileExistsError:
                 print(
                     f"Unable to rename file '{current}' because the file already exists. Skipping...")
@@ -51,8 +50,8 @@ def suffix_delete(path: str, suffix: str) -> None:
 
 
 def rename(path: str, old: str, new: str) -> None:
-    "rename all files in the folder {path}"
-    if not(isinstance(path, str) and isinstance(old, str) and isinstance(new, str)):
+    """rename all files in the folder {path}"""
+    if not (isinstance(path, str) and isinstance(old, str) and isinstance(new, str)):
         raise TypeError("arguments' type are not valid")
 
     # create a list with all the filenames in folder 'path'
@@ -66,8 +65,8 @@ def rename(path: str, old: str, new: str) -> None:
 
 
 def lower(path: str) -> None:
-    "rename all files in the folder {path} to lowercase"
-    if not(isinstance(path, str)):
+    """rename all files in the folder {path} to lowercase"""
+    if not (isinstance(path, str)):
         raise TypeError("arguments' type are not valid")
 
     # create a list with all the filenames in folder 'path'
@@ -81,8 +80,8 @@ def lower(path: str) -> None:
 
 
 def upper(path: str) -> None:
-    "rename all files in the folder {path} to uppercase"
-    if not(isinstance(path, str)):
+    """rename all files in the folder {path} to uppercase"""
+    if not (isinstance(path, str)):
         raise TypeError("arguments' type are not valid")
 
     # create a list with all the filenames in folder 'path'
@@ -95,36 +94,36 @@ def upper(path: str) -> None:
             print(f"Unable to rename file '{current}' because the file already exists. Skipping...")
 
 
-def char_delete(path: str, substring: str, maxcount: int=-1) -> None:
-    "delete filename up to a certain substring"
+def char_delete(path: str, substring: str, maxcount: int = -1) -> None:
+    """delete filename up to a certain substring"""
 
-    if not(isinstance(path, str) and isinstance(substring, str)):
+    if not (isinstance(path, str) and isinstance(substring, str)):
         raise TypeError("arguments' types are not valid")
 
     # create a list with all the filenames in folder 'path'
     files = os.listdir(path)
     counter = 0
 
-    for current in files: # for each file in the folder
+    for current in files:  # for each file in the folder
         if substring in current:  # only check those with the substring in the filename
             counter += 1
             # if the substring is in it then get the index of the first occurence
             index = current.index(substring)
             try:  # and try to rename it
                 os.rename(path + os.sep + current, path +
-                          os.sep + current[index+len(substring):])
+                          os.sep + current[index + len(substring):])
             except FileExistsError:
                 print(
                     f"Unable to rename file '{current}' because the file already exists. Skipping...")
 
-            if counter >= maxcount and maxcount > 0:
+            if counter >= maxcount > 0:
                 return
 
 
 def char_nbr_delete(path: str, char_nbr: int) -> None:
-    "delete filename up to a certain number of character"
+    """delete filename up to a certain number of character"""
 
-    if not(isinstance(path, str) and isinstance(char_nbr, int)):
+    if not (isinstance(path, str) and isinstance(char_nbr, int)):
         raise TypeError("arguments' types are not valid")
 
     # create a list with all the filenames in folder 'path'
@@ -135,14 +134,13 @@ def char_nbr_delete(path: str, char_nbr: int) -> None:
             os.rename(path + os.sep + current, path +
                       os.sep + current[char_nbr:])
         except FileExistsError:
-            print(
-                f"Unable to rename file '{current}' because the file already exists. Skipping...")
+            print(f"Unable to rename file '{current}' because the file already exists. Skipping...")
 
 
 def search(path: str, keyword: str, subfolder: bool = False) -> tuple:
-    "serach for {keyword} in the folder {path}\nReturns [folders, files] (both are lists)"
+    """serach for {keyword} in the folder {path}\nReturns [folders, files] (both are lists)"""
 
-    if not(isinstance(path, str) and isinstance(keyword, str) and isinstance(subfolder, bool)):
+    if not (isinstance(path, str) and isinstance(keyword, str) and isinstance(subfolder, bool)):
         raise TypeError("arguments' types are not valid")
 
     folder_results = list()
@@ -182,7 +180,7 @@ def replace_in_file(path: Union[str, list], old: str, new: str):
     for filename in filenames:
         with open(filename, 'r') as f:
             txt = f.read()
-        if not(new in txt):  # if new not already replaced
+        if not (new in txt):  # if new not already replaced
             txt = txt.replace(old, new)  # replace old by new
         else:
             continue
@@ -193,9 +191,14 @@ def replace_in_file(path: Union[str, list], old: str, new: str):
     return
 
 
-def copy(source_path: str, target_path: str, replace: bool = False) -> None:
-    "copy a file from {source_path} to {target_path}\nReturns 1 if file already exists"
-    if not(isinstance(source_path, str) and isinstance(target_path, str)):
+def copy(source_path: str, target_path: str, replace: bool = False) -> int:
+    """
+    Copy a file from {source_path} to {target_path}
+
+    Returns 1 if file already exists
+    Returns 0 if no error occured
+    """
+    if not (isinstance(source_path, str) and isinstance(target_path, str)):
         raise TypeError("arguments' types are not valid")
 
     if not os.path.exists(source_path):
@@ -212,7 +215,7 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> None:
     source_file = open(source_path, mode='rb')
     target_file = open(target_path, mode='wb')
 
-    size = divmod(os.path.getsize(source_file), 1024)
+    size = divmod(os.path.getsize(source_path), 1024)
 
     for _ in range(size[0]):
         target_file.write(source_file.read(1024))
@@ -221,27 +224,27 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> None:
 
     source_file.close()
     target_file.close()
-    return
+    return 0
 
 
-def delete(source_path: str) -> None:
-    "delete a file permanently without confirmation"
+def safe_delete(source_path: str) -> None:
+    """delete a file permanently without confirmation"""
     with open(source_path, mode='wb') as f:
-        f.write(0x00)  # wipe all file content
+        f.write(b"\x00")  # wipe all file content
     # then delete the file without the original content to make sure no data can be recovered
     os.remove(source_path)
     return
 
 
 def move(source_path: str, target_path: str) -> None:
-    "copy a file from {source_path} to {target_path} then deletes {source_path}"
+    """copy a file from {source_path} to {target_path} then deletes {source_path}"""
     copy(source_path, target_path)
-    delete(source_path)
+    safe_delete(source_path)
     return
 
 
 def list_files(dirpath: str = ".", count: bool = False) -> tuple:
-    "list all files and folder in the {dirpath} folder and all subfolders"
+    """list all files and folder in the {dirpath} folder and all subfolders"""
     if count:
         folders = 0
         files = 0
@@ -261,7 +264,7 @@ def list_files(dirpath: str = ".", count: bool = False) -> tuple:
 
 
 def zip_files(files: list, target_path: str) -> None:
-    "zip every {files} to {target_path}"
+    """zip every {files} to {target_path}"""
     with zipfile.ZipFile(target_path, mode='w', compression=zipfile.ZIP_DEFLATED) as zip_file:
         for file in files:
             zip_file.write(file)
@@ -270,7 +273,7 @@ def zip_files(files: list, target_path: str) -> None:
 
 
 def unzip_file(zip_path: str, target_path: str) -> "list with extracted files":
-    "unzip every file in {zip_path} to {target_path}"
+    """unzip every file in {zip_path} to {target_path}"""
     with zipfile.ZipFile(zip_path, mode='r') as zip_file:
         zip_file.extractall(target_path)
 
