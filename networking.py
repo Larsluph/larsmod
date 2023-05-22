@@ -19,7 +19,7 @@ def _get_addrs(addr_type: str = None) -> dict:
     for x in range(len(v)):  # for each adapter
         temp = dict()
         for y in range(len(v[x])):  # for each addresses
-            if addr_type == None:
+            if addr_type is None:
                 temp[v[x][y].family.name] = v[x][y].address
             else:
                 if v[x][y].family.name == addr_type:  # save only addr_type

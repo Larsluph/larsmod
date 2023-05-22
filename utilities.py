@@ -6,11 +6,13 @@ import os
 import random
 import secrets
 import time
-from typing import Any, Iterable, Union, Optional
+from typing import Any, Sequence, Union, Optional, List, Dict
 
 
 def letter_randomizer(words: Union[str, list]) -> list:
-    'take all characters in a string (separate words by a space) and randomize them to return an "anagram"'
+    """
+    Take all characters in a string (separate words by a space) and randomize them to return an "anagram"
+    """
 
     if not(isinstance(words, (str, list))):
         raise TypeError(
@@ -29,7 +31,6 @@ def letter_randomizer(words: Union[str, list]) -> list:
 
     final = result.copy()
     result = list()
-    string = str()
 
     for word in final:
         string = "".join(word)
@@ -41,7 +42,9 @@ def letter_randomizer(words: Union[str, list]) -> list:
 
 
 def list_cycle(entry: list) -> None:
-    "enable to loop through values in a list"
+    """
+    Enable to loop through values in a list
+    """
     if not(isinstance(entry, list)):
         raise TypeError("argument must be a list")
 
@@ -50,7 +53,9 @@ def list_cycle(entry: list) -> None:
 
 
 def dec2base(n: int, base: int) -> str:
-    "convert number {n} from base 10 to base {base}"
+    """
+    Convert number {n} from base 10 to base {base}
+    """
     result = ""
     if n == 0:
         result = "0"
@@ -62,7 +67,9 @@ def dec2base(n: int, base: int) -> str:
 
 
 def base2dec(n: int, base: int) -> int:
-    "convert number {n} from base {base} to base 10"
+    """
+    Convert number {n} from base {base} to base 10
+    """
     result = 0
     power = 0
     while n > 0:
@@ -73,7 +80,9 @@ def base2dec(n: int, base: int) -> int:
 
 
 def strfill(string: Any, length: int, fill: str = " ", before: bool = False):
-    "same as zfill but more customizable"
+    """
+    same as str.zfill but more customizable
+    """
     sub = str()
     if not(isinstance(string, str)):
         string = repr(string)
@@ -93,7 +102,10 @@ def strfill(string: Any, length: int, fill: str = " ", before: bool = False):
     return string
 
 
-def search(iterable: Iterable, substring: Any) -> list:
+def search(iterable: Sequence, substring: Any) -> list:
+    """
+    Returns every entry in {Sequence} that contains {substring}
+    """
     result = list()
 
     for x in iterable:
@@ -103,8 +115,10 @@ def search(iterable: Iterable, substring: Any) -> list:
     return result
 
 
-def find_all(iterable: Iterable, x: Any) -> list:
-    "find all occurences of {x} in {iterable}"
+def find_all(iterable: Sequence, x: Any) -> list:
+    """
+    Find all occurences of {x} in {Sequence}
+    """
 
     result = []
 
@@ -121,8 +135,10 @@ def find_all(iterable: Iterable, x: Any) -> list:
     return result
 
 
-def chunks(data: Iterable, chunk_size: int, *, callback: Optional=None, reverse: bool=False):
-    "split {data} into n-sized chunks"
+def chunks(data: Sequence, chunk_size: int, *, callback: Optional = None, reverse: bool = False):
+    """
+    Split {data} into n-sized chunks
+    """
     if reverse:
         result = list()
         for i in range(len(data), 0, -chunk_size):
@@ -134,26 +150,34 @@ def chunks(data: Iterable, chunk_size: int, *, callback: Optional=None, reverse:
             result.append(temp)
         return result[::-1]
     else:
-        return [callback(data[i:i+chunk_size]) if callback(callback) else data[i:i+chunk_size] for i in range(0, len(data), chunk_size)]
+        return [callback(data[i:i+chunk_size])
+                if callback(callback)
+                else data[i:i+chunk_size]
+                for i in range(0, len(data), chunk_size)]
 
 
-def password_generator(length: int, chars: Iterable=None):
+def password_generator(length: int, chars: List = None):
     """
     returns a randomly-generated password of length {length} containing only {chars} characters.
     If chars is omitted, character used will be all printable ASCII characters
     """
-    if chars == None:
+    if chars is None:
         chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
     return ''.join(secrets.choice(chars) for _ in range(length))
 
 
-def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) -> "choice in output":
-    "generate a menu w/ inputs & outputs"
-    if not(isinstance(title, str) and isinstance(inputs, list) and isinstance(output, list)):
+def menu_generator(title: str, inputs: Sequence, output: Optional[Sequence] = None, hidden: Optional[Dict]=None) -> "choice in output":
+    """
+    Generate a menu w/ inputs & outputs
+    """
+    if hidden is None:
+        hidden = {}
+
+    if not(isinstance(title, str) and isinstance(inputs, list) and isinstance(output, (list, type(None)))):
         raise TypeError("arguments provided are incorrects")
 
     errors = ["launch loop"]
-    while errors != []:
+    while errors:
         errors = []
         os.system("cls")
 
@@ -183,4 +207,4 @@ def menu_generator(title: str, inputs: list, output: list, hidden: dict = {}) ->
             errors.append("OOB")
             continue
 
-    return output[choice-1]
+    return inputs[choice-1] if output is None else output[choice-1]
