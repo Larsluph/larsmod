@@ -208,3 +208,28 @@ def menu_generator(title: str, inputs: Sequence, output: Optional[Sequence] = No
             continue
 
     return inputs[choice-1] if output is None else output[choice-1]
+
+
+def draw_table(header: list[str], lines: list[list[str]]):
+    lines = [header] + lines
+    column_size = [0 for i in range(len(header))]
+    for line in lines:
+        for i, cell in enumerate(line):
+            column_size[i] = max(column_size[i], len(cell))
+
+    for i in range(1 + len(lines) * 2):
+        if i % 2 == 0:
+            print("+", end="")
+            for size in column_size:
+                print("-" * (size + 1) + "-+", end="")
+            print()
+        else:
+            print("|", end="")
+            for data, size in zip(lines[i // 2], column_size):
+                print(" " + data.center(size) + " |", end="")
+            print()
+
+
+def clrscr():
+    from os import name, system
+    system('cls' if name == 'nt' else 'clear')
