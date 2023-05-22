@@ -3,6 +3,7 @@
 import os
 import zipfile
 from typing import Union
+from pathlib import Path, PurePath
 
 
 def prefix_delete(path: str, prefix: str) -> None:
@@ -327,3 +328,30 @@ def unzip_file(zip_path: str, target_path: str) -> "list with extracted files":
         zip_file.extractall(target_path)
 
     return zip_file.namelist()
+
+
+def merge_dirname(root: str | PurePath, *, sep: str = " - ", append_left: bool = False, export_to_parent: bool = True, should_copy: bool = False):
+    root_path = Path(root)
+    if not root_path.is_dir():
+        return
+
+    for src in root_path.iterdir():
+        new_name: str
+        if append_left:
+            new_name = f"{root_path.name}{sep}{src.name}"
+        else:
+            new_name = f"{src.stem}{sep}{root_path.name}{src.suffix}"
+
+        if export_to_parent:
+            dest = root_path.parent / new_name
+        else:
+            dest = src.with_name(new_name)
+
+        if should_copy:
+            from shutil import copy2
+            copy2(src, dest)
+        else:
+            src.rename(dest)
+    else:
+        if not should_copy and not any(root_path.iterdir()):
+            root_path.rmdir()
