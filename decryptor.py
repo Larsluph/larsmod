@@ -6,6 +6,12 @@ import string
 
 
 def cypher_alpha(data: str) -> list:
+    """
+    Cypher data into a list of numbers corresponding to the position of the letters in the alphabet
+
+    :param data: string to cypher
+    :return: list of numbers
+    """
     if not(isinstance(data, str)):
         raise TypeError("given argument is not a string")
 
@@ -21,6 +27,12 @@ def cypher_alpha(data: str) -> list:
 
 
 def cypher_cesar(data: str, indice: int) -> str:
+    """
+    Cypher data with a caesar cypher
+    :param data: string to cypher
+    :param indice: number of shift
+    :return: string cyphered
+    """
     if not(isinstance(data, str) and isinstance(indice, int)):
         raise TypeError("given arguments are incorrect")
 
@@ -37,6 +49,11 @@ def cypher_cesar(data: str, indice: int) -> str:
 
 
 def cypher_morse(data: str) -> list:
+    """
+    Cypher data into morse code
+    :param data: string to cypher
+    :return: list of morse code
+    """
     if not(isinstance(data, str)):
         raise TypeError("given argument is not a string")
 
@@ -87,6 +104,11 @@ def cypher_morse(data: str) -> list:
 
 
 def cypher_numpad(data: str) -> str:
+    """
+    Cypher data into numpad code
+    :param data: string to cypher
+    :return: string cyphered
+    """
     if not(isinstance(data, str)):
         raise TypeError("given argument is not a string")
 
@@ -122,6 +144,11 @@ def cypher_numpad(data: str) -> str:
 
 
 def decypher_alpha(data: list) -> str:
+    """
+    Decypher data from a list of numbers corresponding to the position of the letters in the alphabet
+    :param data: list of numbers
+    :return: string decyphered
+    """
     if not(isinstance(data, list)):
         raise TypeError("given argument is not a list")
     alpha = string.ascii_lowercase
@@ -136,6 +163,12 @@ def decypher_alpha(data: list) -> str:
 
 
 def decypher_cesar(data: str, indice: int) -> str:
+    """
+    Decypher data with a caesar cypher
+    :param data: string to decypher
+    :param indice: number of shift
+    :return: string decyphered
+    """
     if not(isinstance(data, str) and isinstance(indice, int)):
         raise TypeError("given arguments are incorrect")
 
@@ -152,6 +185,11 @@ def decypher_cesar(data: str, indice: int) -> str:
 
 
 def decypher_morse(data: list) -> str:
+    """
+    Decypher data from a list of morse code
+    :param data: list of morse code
+    :return: string decyphered
+    """
     if not(isinstance(data, list)):
         raise TypeError("given argument is not a list")
     alphabet = {

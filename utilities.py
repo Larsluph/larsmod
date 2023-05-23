@@ -1,17 +1,19 @@
-#!usr/bin/env python3
-# -*- coding:utf-8 -*-
 "a module w/ useful tools"
 
 import os
 import random
 import secrets
-import time
-from typing import Any, Sequence, Union, Optional, List, Dict
+from typing import Any, Sequence, Union, Optional, List, Dict, Callable
 
 
 def letter_randomizer(words: Union[str, list]) -> list:
     """
     Take all characters in a string (separate words by a space) and randomize them to return an "anagram"
+
+    >>> letter_randomizer("hello world")
+    ["d", "l", "r", "w", "o", " ", "e", "l", "l", "h", "o"]
+    >>> letter_randomizer(["hello", "world"])
+    [["d", "l", "r", "w", "o"], ["l", "h", "e", "l", "o"]]
     """
 
     if not(isinstance(words, (str, list))):
@@ -44,6 +46,9 @@ def letter_randomizer(words: Union[str, list]) -> list:
 def list_cycle(entry: list) -> None:
     """
     Enable to loop through values in a list
+
+    >>> list_cycle(["a", "b", "c"])
+    ["b", "c", "a"]
     """
     if not(isinstance(entry, list)):
         raise TypeError("argument must be a list")
@@ -55,6 +60,9 @@ def list_cycle(entry: list) -> None:
 def dec2base(n: int, base: int) -> str:
     """
     Convert number {n} from base 10 to base {base}
+
+    >>> dec2base(42, 2)
+    "101010"
     """
     result = ""
     if n == 0:
@@ -69,6 +77,9 @@ def dec2base(n: int, base: int) -> str:
 def base2dec(n: int, base: int) -> int:
     """
     Convert number {n} from base {base} to base 10
+
+    >>> base2dec("101010", 2)
+    42
     """
     result = 0
     power = 0
@@ -81,7 +92,12 @@ def base2dec(n: int, base: int) -> int:
 
 def strfill(string: Any, length: int, fill: str = " ", before: bool = False):
     """
-    same as str.zfill but more customizable
+    Same as str.zfill but more customizable
+
+    >>> strfill("hello", 10, " ", True)
+    "     hello"
+    >>> strfill("hello", 10, " ", False)
+    "hello     "
     """
     sub = str()
     if not(isinstance(string, str)):
@@ -104,7 +120,10 @@ def strfill(string: Any, length: int, fill: str = " ", before: bool = False):
 
 def search(iterable: Sequence, substring: Any) -> list:
     """
-    Returns every entry in {Sequence} that contains {substring}
+    Returns every entry in {iterable} that contains {substring}
+    
+    >>> search(["hello world", "hello", "world"], "hello")
+    ["hello world", "hello"]
     """
     result = list()
 
@@ -117,9 +136,11 @@ def search(iterable: Sequence, substring: Any) -> list:
 
 def find_all(iterable: Sequence, x: Any) -> list:
     """
-    Find all occurences of {x} in {Sequence}
+    Find all occurences of {x} in {iterable}
+    
+    >>> find_all([1, 2, 3, 1, 2, 3, 1, 2, 3], 2)
+    [1, 4, 7]
     """
-
     result = []
 
     if isinstance(iterable, str):
@@ -135,9 +156,15 @@ def find_all(iterable: Sequence, x: Any) -> list:
     return result
 
 
-def chunks(data: Sequence, chunk_size: int, *, callback: Optional = None, reverse: bool = False):
+def chunks(data: Sequence, chunk_size: int, *, callback: Optional[Callable[[Sequence], Sequence]] = None, reverse: bool = False):
     """
     Split {data} into n-sized chunks
+
+    :param data: data to split
+    :param chunk_size: size of each chunk
+    :param callback: function to apply to each chunk
+    :param reverse: if True, chunks will be returned in reverse order
+    :return: list of chunks
     """
     if reverse:
         result = list()
@@ -151,7 +178,7 @@ def chunks(data: Sequence, chunk_size: int, *, callback: Optional = None, revers
         return result[::-1]
     else:
         return [callback(data[i:i+chunk_size])
-                if callback(callback)
+                if callable(callback)
                 else data[i:i+chunk_size]
                 for i in range(0, len(data), chunk_size)]
 
@@ -160,6 +187,9 @@ def password_generator(length: int, chars: List = None):
     """
     returns a randomly-generated password of length {length} containing only {chars} characters.
     If chars is omitted, character used will be all printable ASCII characters
+    
+    >>> password_generator(8)
+    "9c!;[1E@"
     """
     if chars is None:
         chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
@@ -169,6 +199,12 @@ def password_generator(length: int, chars: List = None):
 def menu_generator(title: str, inputs: Sequence, output: Optional[Sequence] = None, hidden: Optional[Dict]=None) -> "choice in output":
     """
     Generate a menu w/ inputs & outputs
+
+    :param title: title of the menu
+    :param inputs: list of inputs
+    :param output: list of outputs
+    :param hidden: dictionary of hidden choices
+    :return: choice in output
     """
     if hidden is None:
         hidden = {}
@@ -211,6 +247,13 @@ def menu_generator(title: str, inputs: Sequence, output: Optional[Sequence] = No
 
 
 def draw_table(header: list[str], lines: list[list[str]]):
+    """
+    Draw a table with {header} and {lines}
+
+    :param header: list of header
+    :param lines: list of lines
+    :return: None
+    """
     lines = [header] + lines
     column_size = [0 for i in range(len(header))]
     for line in lines:
@@ -231,5 +274,8 @@ def draw_table(header: list[str], lines: list[list[str]]):
 
 
 def clrscr():
+    """
+    Clears the console
+    """
     from os import name, system
     system('cls' if name == 'nt' else 'clear')

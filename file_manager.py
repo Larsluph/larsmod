@@ -2,7 +2,9 @@
 
 import os
 import zipfile
-from typing import Union
+import random
+import string
+from typing import Union, List
 from pathlib import Path, PurePath
 
 
@@ -245,8 +247,10 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> int:
     """
     Copy a file from {source_path} to {target_path}
 
-    Returns 1 if file already exists
-    Returns 0 if no error occured
+    :param source_path: path to the file to copy
+    :param target_path: path to the new file
+    :param replace: whether to replace the file if it already exists
+    :return: 0 if success, 1 if file already exists and replace is False
     """
     if not (isinstance(source_path, str) and isinstance(target_path, str)):
         raise TypeError("arguments' types are not valid")
@@ -277,24 +281,45 @@ def copy(source_path: str, target_path: str, replace: bool = False) -> int:
     return 0
 
 
-def safe_delete(source_path: str) -> None:
-    """delete a file permanently without confirmation"""
-    with open(source_path, mode='wb') as f:
-        f.write(b"\x00")  # wipe all file content
-    # then delete the file without the original content to make sure no data can be recovered
+def safe_delete(source_path: str, passes: int = 3) -> None:
+    """
+    Safely deletes a file by overwriting its content with random data multiple times and then permanently removing it.
+
+    :param source_path: The path to the file to be safely deleted.
+    :param passes: The number of passes to overwrite the file's content (default is 3).
+    :return: None
+    """
+    file_size = os.path.getsize(source_path)
+    with open(source_path, 'wb') as f:
+        for _ in range(passes):
+            random_data = ''.join(random.choices(string.ascii_letters + string.digits, k=file_size))
+            f.write(random_data.encode())
+        f.flush()
+        os.fsync(f.fileno())
+
     os.remove(source_path)
-    return
 
 
 def move(source_path: str, target_path: str) -> None:
-    """copy a file from {source_path} to {target_path} then deletes {source_path}"""
+    """
+    Copy a file from {source_path} to {target_path} then safely deletes {source_path}
+    
+    :param source_path: path to the file to move
+    :param target_path: path to the new file
+    :return: None
+    """
     copy(source_path, target_path)
     safe_delete(source_path)
-    return
 
 
 def list_files(dirpath: str = ".", count: bool = False) -> tuple:
-    """list all files and folder in the {dirpath} folder and all subfolders"""
+    """
+    List all files and folder in the {dirpath} folder and all subfolders
+    
+    :param dirpath: path to the folder to list
+    :param count: whether to return the number of files and folders instead of their paths
+    :return: tuple containing the list of folders and files
+    """
     if count:
         folders = 0
         files = 0
@@ -314,16 +339,26 @@ def list_files(dirpath: str = ".", count: bool = False) -> tuple:
 
 
 def zip_files(files: list, target_path: str) -> None:
-    """zip every {files} to {target_path}"""
+    """
+    Zip every {files} to {target_path}
+    
+    :param files: list of files to zip
+    :param target_path: path to the zip file
+    :return: None
+    """
     with zipfile.ZipFile(target_path, mode='w', compression=zipfile.ZIP_DEFLATED) as zip_file:
         for file in files:
             zip_file.write(file)
 
-    return
 
-
-def unzip_file(zip_path: str, target_path: str) -> "list with extracted files":
-    """unzip every file in {zip_path} to {target_path}"""
+def unzip_file(zip_path: str, target_path: str) -> List[str]:
+    """
+    Unzip every file in {zip_path} to {target_path}
+    
+    :param zip_path: path to the zip file
+    :param target_path: path to the folder where to unzip the files
+    :return: list of unzipped files
+    """
     with zipfile.ZipFile(zip_path, mode='r') as zip_file:
         zip_file.extractall(target_path)
 
@@ -331,6 +366,16 @@ def unzip_file(zip_path: str, target_path: str) -> "list with extracted files":
 
 
 def merge_dirname(root: str | PurePath, *, sep: str = " - ", append_left: bool = False, export_to_parent: bool = True, should_copy: bool = False):
+    """
+    Merge all elements' name with their parent's name
+
+    :param root: folder where to look for elements (files and folders)
+    :param sep: separator between parent's name and element's name (default: " - ")
+    :param append_left: if True, element's name will be on the left side of the separator (default: False)
+    :param export_to_parent: if True, renamed elements will be moved to their parent's folder (default: True)
+    :param should_copy: if True, renamed elements will be copied instead of moved (default: False)
+    :return: None
+    """
     root_path = Path(root)
     if not root_path.is_dir():
         return
