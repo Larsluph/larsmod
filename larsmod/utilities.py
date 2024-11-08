@@ -1,4 +1,4 @@
-"a module w/ useful tools"
+"""a module w/ useful tools"""
 
 import os
 import random
